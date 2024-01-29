@@ -1,0 +1,39 @@
+{% include "base.html"%}
+
+{% block content%}
+
+
+<h1>teacher Table</h1>
+
+<table id="customers">
+  <tr>
+    <th>Firstname</th>
+    <th>Username</th>
+    <th>Department</th>
+    <th>City</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  {% for i in teacher %}
+  <tr>
+    <td>{{i.firstname}}</td>
+    <td>{{i.username}}</td>
+    <td>{{i.department}}</td>
+    <td>{{i.city}}</td>
+    <td><a href="{% url 'teacherEdit' i.id %}">Edit</a></td>
+    <td><a href="{% url 'teacherDelete' i.id %}">Delete</a></td>
+  </tr>
+  {% endfor %}
+</table>
+
+<form action="{%url 'teacherAdd'%}" method='POST'>
+    {%csrf_token%}
+    {{form.as_p}}
+    <input type="submit" value="Submit">
+  </form> 
+
+
+
+
+
+{% endblock content%}
